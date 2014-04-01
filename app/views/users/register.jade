@@ -1,0 +1,37 @@
+extends ../layouts/default.jade
+block content
+	form.form-horizontal(name="form",role="form",novalidate,data-ng-submit="doRegister()",data-ng-controller="AuthController")
+		.fade.in.alert.alert-error(ng-show="message")
+			button.close(data-dismiss="alert") &times;
+			.strong  {{message}}
+		.form-group
+			label.col-sm-2.control-label USER NAME:
+			.col-sm-4
+				input.form-control(name="username",ng-required="true",ng-model="user.username",ng-minlength="2",ng-maxlength="30",autocomplete="off",type="text",placeholder="Please input username")
+			.col-sm-6
+				span.label.label-warning(ng-show="form.username.$pristine && form.username.$error.required") PLEASE INPUT USERNAME.
+				span.label.label-danger(ng-show="form.username.$dirty && form.username.$invalid") PLEASE INPUT 2~30 CHARACTERS FOR THE USERNAME.
+		.form-group
+			label.col-sm-2.control-label PASSWORD:
+			.col-sm-4
+				input.form-control(name="password",ng-required="true",ng-model="user.password",type="password",ng-minlength="5",ng-maxlength="30",autocomplete="off",placeholder="PLEASE INPUT PASSWORD")
+			.col-sm-6
+				span.label.label-warning(ng-show="form.password.$pristine && form.password.$error.required") PLEASE INPUT PASSWORD
+				span.label.label-danger(ng-show="form.password.$dirty && form.password.$invalid") PLEASE INPUT 5~30 CHARACTERS FOR THE PASSWORD.
+		.form-group
+			label.col-sm-2.control-label REAL NAME:
+			.col-sm-4
+				input.form-control(name="realname",ng-required="true",ng-model="user.realname",type="text",ng-minlength="2",ng-maxlength="30",autocomplete="off",placeholder="PLEASE INPUT REALNAME")
+			.col-sm-6
+				span.label.label-warning(ng-show="form.realname.$pristine && form.realname.$error.required") PLEASE INPUT REAL NAME
+				span.label.label-danger(ng-show="form.realname.$dirty && form.realname.$invalid") PLEASE INPUT 2~30 CHARACTERS
+		.form-group
+			label.col-sm-2.control-label EMAIL:
+			.col-sm-4
+				input.form-control(name="email",type="email",ng-model="user.email",placeholder="PLEASE INPUT EMAIL ADDRESS.")
+			.col-sm-6
+				span.label.label-danger(ng-show="form.email.$error.email") PLEASE INPUT CORRECT EMAIL ADDRESS.
+		.form-group
+			.col-sm-4.col-sm-offset-2
+				input.btn.btn-success(type="submit",ng-disabled="form.$invalid",value="SUBMIT")
+				input.btn.btn-warning(type="reset",ng-disabled="form.$pristine",value="RESET")

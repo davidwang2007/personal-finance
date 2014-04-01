@@ -1,0 +1,5 @@
+@charset "UTF-8";
+body{
+	padding-top:70px;
+}
+body, input, select, textarea, button {	font-family: DFLiHei, "Microsoft JhengHei", sans-serif;}

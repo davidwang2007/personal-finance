@@ -21,19 +21,22 @@ module.exports = function(passport){
 		});		
 	});
 
-	passport.user(new LocalStrategy({
-		usernameField: 'email',
+	passport.use(new LocalStrategy({
+		usernameField: 'username',
 		passwordField: 'password'
-	},function(email,password,done){
+	},function(username,password,done){
 		User.findOne({
-			email: email	
+			username: username	
 		},function(err,user){
 			if(err) return done(err);
 			if(!user){
 				return done(null,false,{message: 'Unknown user'});
 			}
 			if(!user.authenticate(password))
-				return
+				return done(null,false,{
+					message: 'Invalid password'
+				});
+			return done(null,user);
 		});
 	}));
 };

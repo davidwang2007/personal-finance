@@ -5,9 +5,9 @@ var rootPath = path.normalize(__dirname + '/../..');
 
 module.exports = {
 	root: rootPath,
-	port: process.env.PORT || 3000,
+	port: 3000,
 	db: process.env.MONGOHQ_URL,
-	templateEngine: 'swig',
+	templateEngine: 'jade',//'swig',
 	// The secret should be set to a none-guessable string that
 	// is used to compute a session hash
 	sessionSecret: 'personal finance',
