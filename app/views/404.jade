@@ -1,8 +1,10 @@
 extends ./layouts/default.jade
 block content
-	h1 请求地址不存在
 	br
-	code 404
+	code 错误代码404
+	br
+	br
+	code= "请求地址"+url+"不存在"
 	br
 	br
 	#error-message-box
