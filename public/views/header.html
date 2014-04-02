@@ -1,7 +1,7 @@
 <div data-ng-controller="HeaderController">
 	<ul class="navbar-nav nav">
 		<li>
-			<a class="navbar-brand" href="/">PERSONAL FINANCE</a>
+			<a class="navbar-brand" href="/">个人</a>
 		</li>
 		<li data-ng-repeat="item in menu" data-ng-show="global.user" 
 			ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
@@ -9,17 +9,17 @@
 		</li>
 	</ul>
 	<ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
-		<li><a href="register">REGISTER</a></li> 
+		<li><a href="register">注册</a></li> 
 		<li class="divider-vertical"></li>
-		<li><a href="login">LOG IN</a></li>
+		<li><a href="login">登录</a></li>
 	</ul>
 	<ul class="navbar-nav nav pull-right" data-ng-show="global.authenticated">
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				{{global.user.name}} <b class="caret"></b>	
+				{{global.user.username}} <b class="caret"></b>	
 			</a>
 			<ul class="dropdown-menu">
-				<li><a href="/logout">LOG OUT</a></li>
+				<li><a href="/logout">注销</a></li>
 			</ul>
 		</li>
 	</ul>

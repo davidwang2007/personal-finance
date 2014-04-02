@@ -5,7 +5,13 @@ var mongoose = require('mongoose'),
 
 exports.register = function(req,res){
 	res.render('users/register',{
-		title: 'USER REGISTERATION'		
+		title: '用户注册'		
+	});
+};
+
+exports.login = function(req,res){
+	res.render('users/login',{
+		title: '用户登录'		
 	});
 };
 
@@ -17,10 +23,10 @@ exports.create = function(req,res){
 			switch(err.code){
 				case 11000:
 				case 11001:
-					message = 'Username already exists';
+					message = '用户名已存在，请更换其它名称';
 					break;
 				default:
-					message = 'Please fill all the required fields';
+					message = '请填写必填项';
 					break;
 			}
 
@@ -42,3 +48,4 @@ exports.logout = function(req,res){
 	req.logout();
 	res.redirect('/');
 };
+

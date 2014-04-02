@@ -1,0 +1,24 @@
+extends ../layouts/default.jade
+block content
+	form.form-horizontal(name="form",role="form",novalidate,data-ng-submit="doLogin()",data-ng-controller="AuthController")
+		.row
+			.fade.in.alert.alert-danger.col-sm-4.col-sm-offset-2(ng-show="message")
+				strong {{message}}
+		.form-group
+			label.col-sm-2.control-label 用户名:
+			.col-sm-4
+				input.form-control(name="username",ng-model="user.username",ng-required="true",type="text",placeholder="请输入用户名")
+			.col-sm-6
+				span.label.label-warning(ng-show="form.username.$pristine && form.username.$error.required") 请输入用户名
+				// span.label.label-danger(ng-show="form.username.$dirty && form.username.$error.invalid")
+		.form-group
+			label.col-sm-2.control-label 密码:
+			.col-sm-4
+				input.form-control(name="password",ng-model="user.password",ng-required="true",type="password",placeholder="请输入密码")
+			.col-sm-6
+				span.label.label-warning(ng-show="form.password.$pristine && form.password.$error.required") 请输入密码
+		.form-group
+			.col-sm-4.col-sm-offset-2
+				input.btn.btn-success(value="登录",ng-disabled="form.$invalid",type="submit")
+				| &nbsp;&nbsp;没有账号？  
+				a(href="/register") 注册

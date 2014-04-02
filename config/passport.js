@@ -30,11 +30,11 @@ module.exports = function(passport){
 		},function(err,user){
 			if(err) return done(err);
 			if(!user){
-				return done(null,false,{message: 'Unknown user'});
+				return done(null,false,{message: '用户名不存在'});
 			}
 			if(!user.authenticate(password))
 				return done(null,false,{
-					message: 'Invalid password'
+					message: '用户名密码不匹配'
 				});
 			return done(null,user);
 		});

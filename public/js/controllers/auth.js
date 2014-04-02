@@ -1,5 +1,5 @@
 'use strict';
-angular.module('pf.system').controller('AuthController',['$scope','Global','User','$location',function($scope,Global,User,$location){
+angular.module('pf.system').controller('AuthController',['$scope','Global','User','$location','$http',function($scope,Global,User,$location,$http){
 	$scope.global = Global;
 	$scope.doRegister = function(){
 		console.log($scope.user);
@@ -10,4 +10,13 @@ angular.module('pf.system').controller('AuthController',['$scope','Global','User
 				window.location.href = '/';
 		});
 	};	
+
+	$scope.doLogin = function(){
+		$http.post('/login',$scope.user).success(function(data){
+			//console.log('login server response data == ',data);	
+			$scope.message = data.message;
+			if(data.result === 0)
+				window.location.href = '/';
+		});		
+	};
 }]);
