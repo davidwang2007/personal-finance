@@ -6,7 +6,7 @@ angular.module('pf.system').directive('ensureUnique',['$http',function($http){
 		require: 'ngModel',
 		link: function(scope,ele,attrs,ctrl){
 			scope.$watch(attrs.ngModel,function(val){
-				if(val === ''){
+				if(ele.val() == ''){
 					ctrl.$setValidity('unique',true);		
 					return;
 				}
