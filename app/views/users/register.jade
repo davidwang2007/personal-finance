@@ -8,10 +8,11 @@ block content
 		.form-group
 			label.col-sm-2.control-label 用户名:
 			.col-sm-4
-				input.form-control(name="username",ng-required="true",ng-model="user.username",ng-minlength="2",ng-maxlength="30",autocomplete="off",type="text",placeholder="请输入用户名")
+				input.form-control(ensure-unique="User",name="username",ng-required="true",ng-model="user.username",ng-minlength="2",ng-maxlength="30",autocomplete="off",type="text",placeholder="请输入用户名")
 			.col-sm-6
 				span.label.label-warning(ng-show="form.username.$pristine && form.username.$error.required") 请输入用户名.
-				span.label.label-danger(ng-show="form.username.$dirty && form.username.$invalid") 请输入2~30个字符长度
+				span.label.label-danger(ng-show="form.username.$error.minlength || form.username.$error.maxlength") 请输入2~30个字符长度
+				span.label.label-danger(ng-show="form.username.$error.unique") 用户名"{{user.username}}"已被占用，请更换名称
 		.form-group
 			label.col-sm-2.control-label 密码:
 			.col-sm-4
