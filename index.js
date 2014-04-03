@@ -64,5 +64,6 @@ var routes_path = __dirname + '/app/routes';
 app.listen(config.port,function(err){
 	if(err) return console.error(err) && process.exit(1);		
 	console.log('Express app started on port ' + config.port);
-	logger.init(app,passport,mongoose);
+	// 暂时不使用mean logger ,因为还没有搞清楚它究竟是做什么的呢
+	//logger.init(app,passport,mongoose);
 });
