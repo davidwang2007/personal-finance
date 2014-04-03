@@ -42,7 +42,6 @@ var app = express();
 
 // Express settings
 require('./config/express')(app,passport,db);
-
 // Bootstrap routes
 var routes_path = __dirname + '/app/routes';
 (function walk(path){

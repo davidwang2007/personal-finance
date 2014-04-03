@@ -59,9 +59,21 @@ module.exports = function(app,passport,db){
 		app.use(passport.initialize());
 		app.use(passport.session());
 		app.use(flash());
-		app.use(app.router);
 		app.use(express.favicon());
 		app.use(express.static(config.root + '/public'));
+		/**
+		 * 添加自定义的权限，即在未登录的情况下不允许访问
+		 * @author D.W.
+		 * @date 2014-4-3
+		 * */
+		var safeUrls = ['/register','/login','/'];
+		app.use(function(req,res,next){
+			if(~safeUrls.indexOf(req.url) || req.isAuthenticated())
+				next();
+			else // 否则重定向到首页
+				res.redirect('/');
+		});
+		app.use(app.router);
 
 		app.use(function(err,req,res,next){
 			var accept = req.header('accept');
