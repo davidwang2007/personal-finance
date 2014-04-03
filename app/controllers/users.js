@@ -15,7 +15,7 @@ exports.login = function(req,res){
 	});
 };
 
-exports.create = function(req,res){
+exports.create = function(req,res,next){
 	var user = new User(req.body);
 	var message = '';
 	user.save(function(err){

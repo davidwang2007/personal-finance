@@ -13,12 +13,15 @@ module.exports = function(app,passport,db){
 	app.locals.pretty = true;
 	app.locals.cache = 'memory';
 
+	// 暂时不使用压缩，不用节约带宽
+	/*
 	app.use(express.compress({
 		filter: function(req,res){
 			return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
 		},
 		level: 9
 	}));
+	*/
 
 	// only use logger for development environment
 	if(process.env.NODE_ENV === 'development'){
@@ -55,12 +58,17 @@ module.exports = function(app,passport,db){
 		app.use(express.static(config.root + '/public'));
 
 		app.use(function(err,req,res,next){
+			var accept = req.header('accept');
+			if(~accept.indexOf('application/json')){
+				return res.jsonp(200,{result:1,message: err.message});	
+			}
 			if(~err.message.indexOf('not found'))
 				return next();
 			console.error(err.statck);
 			res.status(500).render('500',{error: err.stack});
 		});
 
+		// 初步判断 由于此method签名为二个参数，所以当404的时候直接调用的这个方法
 		app.use(function(req,res){
 			res.status(404).render('404',{
 				url: req.originalUrl,

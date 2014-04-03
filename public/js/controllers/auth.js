@@ -17,6 +17,6 @@ angular.module('pf.system').controller('AuthController',['$scope','Global','User
 			$scope.message = data.message;
 			if(data.result === 0)
 				window.location.href = '/';
-		});		
+		});
 	};
 }]);
