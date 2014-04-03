@@ -1,0 +1,29 @@
+<div class="alert alert-info" ng-show="message">
+	{{message}}
+</div>
+<table class="table table-bordered table-striped table-hover" ng-show="moneys && moneys.length">
+	<caption><h3>{{global.user.realname}}消费列表</h3></caption>
+	<tr>
+		<td>序号</td>
+		<td>日期</td>
+		<td>花费</td>
+		<td>备注</td>
+		<td>操作</td>
+	</tr>
+	<tr class="" ng-repeat="money in moneys">
+		<td>{{$index+1}}</td>
+		<td>{{money.costDate | date:'yyyy年MM月dd日'}}</td>
+		<td>{{money.cost | number:2}}元</td>
+		<td>{{money.desc}}</td>
+		<td>
+			<a class="" ui-sref="moneys-detail({id:money._id})">详情</a>
+			<a class="" href="#!/money/update/{{money._id}}">修改</a>
+			<a class="" href="javascript:void(0);" ng-click="remove($index)">删除</a>
+		</td>
+	</tr>
+</table>
+
+<div class="alert alert-info" ng-hide="moneys && moneys.length">
+	当前没有消费记录,<a ui-sref="moneys-create">新增</a>一个吧
+</div>
+

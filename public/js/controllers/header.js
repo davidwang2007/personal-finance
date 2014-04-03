@@ -2,11 +2,13 @@
 angular.module('pf.system').controller('HeaderController',['$scope','Global',function($scope,Global){
 	$scope.global = Global;
 	$scope.menu = [{
-		'title' : 'Money List',
-		'link' : 'moneys'
+		'title' : '消费列表',
+		'link' : 'money/list',
+		state: 'moneys-list'
 	},{
-		title: 'Create New Money Cost',
-		link: 'moneys/create'
+		title: '新增消费',
+		link: 'money/create',
+		state: 'moneys-create'
 	}];
 
 	$scope.isCollapsed = false;

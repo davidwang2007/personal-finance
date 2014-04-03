@@ -1,11 +1,10 @@
 <div class="container" data-ng-controller="HeaderController">
 	<ul class="navbar-nav nav">
-		<li>
-			<a class="navbar-brand" href="/">个人</a>
+		<li ui-sref-active="active">
+			<a class="navbar-brand" ui-sref="home">个人财务</a>
 		</li>
-		<li data-ng-repeat="item in menu" data-ng-show="global.user" 
-			ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-			<a href="#!/{{item.link}}">{{item.title}}</a>
+		<li data-ng-repeat="item in menu" data-ng-show="global.user" ui-sref-active="active">
+			<a ui-sref="{{item.state}}">{{item.title}}</a>
 		</li>
 	</ul>
 	<ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
