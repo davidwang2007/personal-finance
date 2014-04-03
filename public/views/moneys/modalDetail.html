@@ -1,0 +1,19 @@
+<!-- 消费详情对话框 -->
+<script type="text/ng-template" id="views/moneys/modalDetail.html">
+	<div class="modal-header">
+		<h3>消费详情</h3>
+	</div>
+	<div class="modal-body">
+		<dl class="dl-horizontal">
+			<dt>消费日期</dt>	
+			<dd>{{money.costDate | date:'yyyy年MM月dd日'}}</dd>
+			<dt>消费金额</dt>
+			<dd>{{money.cost | number:2}}元</dd>
+			<dt>消费备注</dt>
+			<dd>{{money.desc}}</dd>
+		</dl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">关闭</button>
+	</div>
+</script>

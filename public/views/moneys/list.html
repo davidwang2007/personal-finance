@@ -16,14 +16,20 @@
 		<td>{{money.cost | number:2}}元</td>
 		<td>{{money.desc}}</td>
 		<td>
+			<!--
 			<a class="" ui-sref="moneys-detail({id:money._id})">详情</a>
+			-->
+			<a href="javascript:void(0);" ng-click="openDetail($index)">详情</a>
 			<a class="" href="#!/money/update/{{money._id}}">修改</a>
 			<a class="" href="javascript:void(0);" ng-click="remove($index)">删除</a>
 		</td>
 	</tr>
 	<tfoot>
 		<tr>
-			<td colspan="5"><a ui-sref="moneys-create" class="">新增消费</a></td>
+			<td>共<code>{{moneys.length}}</code>项</td>
+			<td class="text-right">总金额:</td>
+			<td><code>{{sumPrice | number:2}}元</code></td>
+			<td colspan="2"><a ui-sref="moneys-create" class="">新增消费</a></td>
 		</tr>
 	</tfoot>
 </table>
@@ -32,3 +38,22 @@
 	当前没有消费记录,<a ui-sref="moneys-create">新增</a>一个吧
 </div>
 
+<!-- 消费详情对话框 -->
+<script type="text/ng-template" id="moneyDetail.html">
+	<div class="modal-header">
+		<h3>消费详情</h3>
+	</div>
+	<div class="modal-body">
+		<dl class="dl-horizontal">
+			<dt>消费日期</dt>	
+			<dd>{{money.costDate | date:'yyyy年MM月dd日'}}</dd>
+			<dt>消费金额</dt>
+			<dd>{{money.cost | number:2}}元</dd>
+			<dt>消费备注</dt>
+			<dd>{{money.desc}}</dd>
+		</dl>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">关闭</button>
+	</div>
+</script>

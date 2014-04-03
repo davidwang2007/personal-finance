@@ -37,7 +37,12 @@ exports.detail = function(req,res){
 	});
 };
 
-exports.update = function(req,res){
+exports.update = function(req,res,next){
+	Object.keys(req.body).forEach(function(key){
+		if(key.indexOf('_') === 0){
+			delete req.body[key];	
+		}		
+	});
 	Money.findByIdAndUpdate(req.params.id,req.body,function(err,money){
 		if(err) return next(err);
 		res.jsonp({result:0,money:money});

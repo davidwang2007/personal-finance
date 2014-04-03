@@ -4,9 +4,17 @@
  * */
 'use strict';
 
-angular.module('pf.money').controller('MoneyListController',['$scope','Money','$stateParams','Global',function($scope,Money,$stateParams,Global){
+angular.module('pf.money').controller('MoneyListController',['$scope','Money',
+		'$modal','$stateParams','Global',function($scope,Money,$modal,$stateParams,Global){
 	$scope.global = Global;
 	$scope.moneys = Money.query();
+	//下面三行代码是为了以后使用，即做统计分析之用
+	$scope.$watch('moneys.length',function(){
+		// console.log('moneys change',arguments);	
+		$scope.sumPrice = $scope.moneys.reduce(function(a,b){
+			return a + b.cost;	
+		},0);
+	});
 	$scope.remove = function($index){
 		$scope.moneys[$index].$remove(function(data){
 			$scope.message = data.message;
@@ -14,6 +22,26 @@ angular.module('pf.money').controller('MoneyListController',['$scope','Money','$
 				$scope.moneys.splice($index,1);
 			}	
 		});	
+	};
+
+	$scope.openDetail = function($index){
+		//var money = $scope.moneys[$index];
+		var modalInstance = $modal.open({
+			templateUrl: 'moneyDetail.html',
+			controller: ModalDetailController,
+			resolve: {
+				money: function(){
+					return $scope.moneys[$index];
+				}
+			}
+		});	
+	};
+
+	function ModalDetailController($scope,$modalInstance,money){
+		$scope.money = money;
+		$scope.ok = function(){
+			$modalInstance.dismiss('cancel');
+		};
 	};
 }]);
 
@@ -45,7 +73,7 @@ angular.module('pf.money').controller('MoneyUpdateController',['$scope','Money',
 			$scope.oldMoney = angular.copy(money);		
 		});
 		$scope.doUpdate = function(){
-			$scope.money.update(function(data){
+			$scope.money.$update(function(data){
 				$scope.message = data.message;
 				if(data.result == 0){
 					$state.go('moneys-list');
