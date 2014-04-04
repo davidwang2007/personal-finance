@@ -6,4 +6,4 @@ angular.module('pf',['pf.system','pf.money']);
 angular.module('pf.system',['pf.base']);
 angular.module('pf.money',['pf.base']);
 
-angular.module('pf.base',['ngCookies','ngResource','ui.bootstrap','ui.router']);
+angular.module('pf.base',['ngCookies','ngResource','ui.bootstrap','ui.router','ngAnimate']);

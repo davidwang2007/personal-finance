@@ -1,7 +1,7 @@
 <div class="container" data-ng-controller="HeaderController">
 	<ul class="navbar-nav nav">
 		<li ui-sref-active="active">
-			<a class="navbar-brand" ui-sref="home">个人财务</a>
+			<a class="navbar-brand" href="/">个人财务</a>
 		</li>
 		<li data-ng-repeat="item in menu" data-ng-show="global.user" ui-sref-active="active">
 			<a ui-sref="{{item.state}}">{{item.title}}</a>

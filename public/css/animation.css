@@ -1,0 +1,101 @@
+﻿@charset "UTF-8";
+/**
+  view frame animation
+  @author D.W.
+  @date 2014-4-4
+*/
+
+.money-listing.ng-enter,
+.money-listing.ng-leave,
+.money-listing.ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+ 
+.money-listing.ng-enter,
+.money-listing.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+ 
+.money-listing.ng-move.ng-move-active,
+.money-listing.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+ 
+.money-listing.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+ 
+.money-listing.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/*
+.view-container {
+  position: relative;
+}
+
+.view-frame.ng-enter, .view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+ 
+.view-frame.ng-enter {
+  -webkit-animation: slide-in 300ms ease-in;
+  -moz-animation: slide-in 300ms ease-in;
+  -o-animation:slide-in 300ms ease-in;
+  animation: slide-in 300ms ease-in;
+
+  overflow:hidden;
+  /*z-index: 100;*/
+}
+ 
+.view-frame.ng-leave {
+
+  -webkit-animation: slide-out 300ms ease-out;
+  -moz-animation: slide-out 300ms ease-out;
+  -o-animation: slide-out 300ms ease-out;
+  animation: slide-out 300ms ease-out;
+  z-index:99;
+  
+}
+
+ 
+@keyframes slide-in {
+  from { margin-right: 100%; }
+  to { margin-right: 0; }
+}
+@-moz-keyframes slide-in {
+  from { margin-right: 100%; }
+  to { margin-right: 0; }
+}
+@-webkit-keyframes slide-in {
+  from { margin-right: 100%; }
+  to { margin-right: 0; }
+}
+ 
+@keyframes slide-out {
+  from { margin-left:0; }
+  to { margin-left: 100%; }
+}
+@-moz-keyframes slide-out {
+  from { margin-left:0; }
+  to { margin-left: 100%; }
+}
+@-webkit-keyframes slide-out {
+  from { margin-left:0; }
+  to { margin-left: 100%; }
+}
+*/
+/* don't forget about the vendor-prefixes! */

@@ -10,7 +10,7 @@
 		<td>备注</td>
 		<td>操作</td>
 	</tr>
-	<tr class="" ng-repeat="money in moneys">
+	<tr class="money-listing" ng-repeat="money in moneys " >
 		<td>{{$index+1}}</td>
 		<td>{{money.costDate | date:'yyyy年MM月dd日'}}</td>
 		<td>{{money.cost | number:2}}元</td>
@@ -20,7 +20,10 @@
 			<a class="" ui-sref="moneys-detail({id:money._id})">详情</a>
 			-->
 			<a href="javascript:void(0);" ng-click="openDetail($index)">详情</a>
+			<!-- 使用 ui-sref 跳转修改页面
 			<a class="" href="#!/money/update/{{money._id}}">修改</a>
+			-->
+			<a ui-sref="moneys-update({id:money._id})">修改</a>
 			<a class="" href="javascript:void(0);" ng-click="remove($index)">删除</a>
 		</td>
 	</tr>

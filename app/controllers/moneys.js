@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 exports.list = function(req,res,next){
 	Money.find({
 		user: req.user		
-	},function(err,moneys){
+	}).sort('-costDate').exec(function(err,moneys){
 		if(err) return next(err);
 		res.jsonp(moneys);
 	});	
