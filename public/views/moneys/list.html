@@ -63,7 +63,7 @@
 <!-- 删除条目确认对话框 -->
 <script type="text/ng-template" id="moneyDeleteConfirm.html">
 	<div class="modal-header">
-		<h3>消费详情</h3>
+		<h4>消费详情</h4>
 	</div>
 	<div class="modal-body">
 		<dl class="dl-horizontal">
@@ -73,10 +73,11 @@
 			<dd>{{money.cost | number:2}}元</dd>
 			<dt>消费备注</dt>
 			<dd>{{money.desc}}</dd>
+			<dt></dt>
 		</dl>
-		<h4>你确定删除此条消费记录吗?</h4>
 	</div>
 	<div class="modal-footer">
+		<code>确认删除?</code>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class="btn btn-warning" ng-click="ok()">确定</button>
 		<button class="btn btn-primary" ng-click="close()">取消</button>
 	</div>
