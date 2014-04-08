@@ -70,8 +70,14 @@ module.exports = function(app,passport,db){
 		app.use(function(req,res,next){
 			if(~safeUrls.indexOf(req.url) || req.isAuthenticated())
 				next();
-			else // 否则重定向到首页
-				res.redirect('/');
+			else{ // 否则重定向到首页
+				// 先判断是否是发的ajax请求，即请求的是否是json
+				var header = req.header('accept');
+				if(~header.indexOf('application/json'))
+					res.status(401).jsonp({result:1,message:'你没有权限访问此链接'});
+				else
+					res.redirect('/');
+			}
 		});
 		app.use(app.router);
 

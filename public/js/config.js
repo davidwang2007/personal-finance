@@ -29,9 +29,20 @@ angular.module('pf').config(['$stateProvider','$urlRouterProvider',function($sta
 		url: '/money/update/:id',	
 		templateUrl: 'views/moneys/update.html',
 		controller: 'MoneyUpdateController'
+	}).state('redirect',{
+		url: '/error/redirect',
+		templateurl: 'views/redirect.html',
+		controller: 'IndexController'
 	});
 }]);
 
 angular.module('pf').config(['$locationProvider',function($locationProvider){
 	$locationProvider.hashPrefix('!');		
-}]);;
+}]);
+
+// add xhr header
+angular.module('pf').config(['$httpProvider',function($httpProvider){
+	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';		
+	$httpProvider.interceptors.push('interceptor401');
+
+}]);
