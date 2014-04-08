@@ -1,3 +1,11 @@
 <section data-ng-controller="IndexController">
-	<h1>This is the home view</h1>
+	<div class="text-center" ng-show="!global.authenticated">
+		<h1>你尚未登陆</h1>
+		单击<a href="/login">此处</a>登录,或者<a href="/register">注册</a>一个新账号吧
+	</div>
+
+	<div class="text-center" ng-show="global.authenticated">
+		<h1>你已经登录</h1>
+		你可以查看<a ui-sref="moneys-list">列表</a>或者<a ui-sref="moneys-create">创建</a>一个新消费记录
+	</div>
 </section>
