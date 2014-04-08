@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('pf.money').controller('MoneyListController',['$scope','Money',
-		'$modal','$stateParams','Global',function($scope,Money,$modal,$stateParams,Global){
+		'$modal','$stateParams','Global','$window',function($scope,Money,$modal,$stateParams,Global,$window){
 	$scope.global = Global;
 	$scope.moneys = Money.query();
 	//下面三行代码是为了以后使用，即做统计分析之用
@@ -16,12 +16,40 @@ angular.module('pf.money').controller('MoneyListController',['$scope','Money',
 		},0);
 	});
 	$scope.remove = function($index){
-		$scope.moneys[$index].$remove(function(data){
+		$window.confirm('确认删除此条记录吗?') && $scope.moneys[$index].$remove(function(data){
 			$scope.message = data.message;
 			if(data.result == 0){
 				$scope.moneys.splice($index,1);
 			}	
 		});	
+	};
+
+	// 针对上面remove的改版
+	$scope.removeConfirm = function($index){
+		$modal.open({
+			templateUrl: 'moneyDeleteConfirm.html',
+			controller: function($scope,$modalInstance,money){
+				$scope.money = money;
+				$scope.ok = function(){
+					$modalInstance.close(true);
+				};
+				$scope.close = function(){
+					$modalInstance.dismiss('Cancel');
+				};
+			},
+			resolve: {
+				money: function(){
+				   return $scope.moneys[$index];
+				}
+			}
+		}).result.then(function(flag){
+			flag && $scope.moneys[$index].$remove(function(data){
+				$scope.message = data.message;
+				if(data.result == 0){
+					$scope.moneys.splice($index,1);
+				}	
+			});	
+		});
 	};
 
 	$scope.openDetail = function($index){
