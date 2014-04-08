@@ -7,7 +7,7 @@ angular.module('pf.system').controller('AuthController',['$scope','Global','User
 			console.log('save user, server response ',data);	
 			$scope.message = data.message;
 			if(data.result == 0)
-				window.location.href = '/';
+				$window.location.href = '/';
 		});
 	};	
 
