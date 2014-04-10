@@ -80,6 +80,13 @@ module.exports = function(app,passport,db){
 			}
 		});
 		app.use(app.router);
+		app.param('id',function(req,res,next,id){
+			if(id[0] !== '_'){
+				//表示不是合格的ID，可能是路径错误
+				next(new Error('请求路径错误not found'));
+			}else
+				next();
+		});
 
 		app.use(function(err,req,res,next){
 			var accept = req.header('accept');

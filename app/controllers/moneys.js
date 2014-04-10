@@ -30,7 +30,7 @@ exports.remove = function(req,res){
 	});
 };
 
-exports.detail = function(req,res){
+exports.detail = function(req,res,next){
 	Money.findById(req.params.id,function(err,money){
 		if(err) return next(err);
 		res.jsonp(money);
