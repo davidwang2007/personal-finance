@@ -68,7 +68,9 @@ module.exports = function(app,passport,db){
 		 * */
 		var safeUrls = ['/register','/login','/'];
 		app.use(function(req,res,next){
-			if(~safeUrls.indexOf(req.url) || req.isAuthenticated())
+			if(~safeUrls.indexOf(req.url) || req.isAuthenticated()
+				|| ~req.url.indexOf('/api/check')
+				|| (req.url == '/user' && req.method == 'POST'))
 				next();
 			else{ // 否则重定向到首页
 				// 先判断是否是发的ajax请求，即请求的是否是json
