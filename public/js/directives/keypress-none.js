@@ -10,6 +10,8 @@ angular.module('pf.system').directive('keypressNone',function(){
 		restrict: 'A',
 		link: function(scope,element,attrs){
 			element.on('keydown',function($event){
+				//console.log('which keyCode charCode');
+				//console.log($event.which,$event.keyCode,$event.charCode);
 				$event.preventDefault();
 				$event.stopPropagation();
 			});
